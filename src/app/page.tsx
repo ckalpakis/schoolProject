@@ -5,30 +5,34 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { supabase } from '@/lib/supabase'
 import CourseCard from './components/CourseCard'
-import { GraduationCap, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react'
+import { GraduationCap, BookOpen, Sparkles, Play, Zap, Heart, Target } from 'lucide-react'
 
 // Loading skeleton for courses
 function CoursesLoading() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {[1, 2, 3].map((i) => (
-        <Card key={i} className="animate-pulse">
-          <CardHeader className="pb-3">
-            <div className="h-6 bg-muted rounded w-3/4 mb-2"></div>
-            <div className="flex gap-2 mb-2">
-              <div className="h-5 bg-muted rounded w-16"></div>
-              <div className="h-5 bg-muted rounded w-20"></div>
+        <Card key={i} className="animate-pulse bg-white border-4 border-gray-200 shadow-lg">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-gray-200 rounded"></div>
+              <div className="h-4 bg-gray-200 rounded w-12"></div>
             </div>
-            <div className="h-4 bg-muted rounded w-full"></div>
-            <div className="h-4 bg-muted rounded w-2/3"></div>
+            <div className="h-7 bg-gray-200 rounded w-3/4 mb-3"></div>
+            <div className="flex gap-2 mb-3">
+              <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+              <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+            </div>
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
           </CardHeader>
           <CardContent className="pt-0">
-            <div className="flex gap-4 mb-4">
-              <div className="h-4 bg-muted rounded w-16"></div>
-              <div className="h-4 bg-muted rounded w-12"></div>
-              <div className="h-4 bg-muted rounded w-14"></div>
+            <div className="flex gap-4 mb-6">
+              <div className="h-4 bg-gray-200 rounded w-16"></div>
+              <div className="h-4 bg-gray-200 rounded w-12"></div>
+              <div className="h-4 bg-gray-200 rounded w-14"></div>
             </div>
-            <div className="h-10 bg-muted rounded w-full"></div>
+            <div className="h-12 bg-gray-200 rounded-full w-full"></div>
           </CardContent>
         </Card>
       ))}
@@ -72,20 +76,22 @@ async function FeaturedCourses() {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
+    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400">
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="bg-white/95 backdrop-blur-md shadow-sm border-b-4 border-purple-400">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <GraduationCap className="h-6 w-6" />
+            <Link href="/" className="flex items-center gap-3 font-black text-2xl text-purple-600">
+              <div className="bg-purple-100 p-2 rounded-xl">
+                <GraduationCap className="h-8 w-8 text-purple-600" />
+              </div>
               Try-a-Major
             </Link>
             <div className="flex items-center gap-4">
-              <Link href="/test" className="text-sm text-muted-foreground hover:text-foreground">
+              <Link href="/test" className="text-sm text-gray-600 hover:text-purple-600 font-medium">
                 Test Suite
               </Link>
-              <Button variant="outline" size="sm">
+              <Button className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-6 py-2 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                 Sign In
               </Button>
             </div>
@@ -95,30 +101,38 @@ export default function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section className="py-16 lg:py-24" data-testid="hero-section">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-2 mb-6">
-                <Badge variant="secondary" className="text-sm">
-                  <Sparkles className="h-3 w-3 mr-1" />
-                  New Platform
+        <section className="py-20 lg:py-32 relative overflow-hidden" data-testid="hero-section">
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-bounce"></div>
+          <div className="absolute top-32 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute bottom-20 left-20 w-24 h-24 bg-green-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 right-10 w-12 h-12 bg-pink-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1.5s'}}></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 mb-8">
+                <Badge className="bg-yellow-400 text-black text-sm px-4 py-2 rounded-full font-bold border-0 shadow-lg">
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  NEW & EXCITING!
                 </Badge>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                Discover Your Perfect{' '}
-                <span className="text-primary">Academic Path</span>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-white drop-shadow-lg">
+                Find Your 
+                <span className="text-yellow-300 block lg:inline lg:ml-4">
+                  Dream Major! 🎓
+                </span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Explore different majors through interactive courses and lessons. 
-                Make informed decisions about your educational journey.
+              <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+                Tired of boring course catalogs? Jump into fun, interactive lessons that show you what studying different majors is REALLY like!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="text-lg px-8">
-                  Start Exploring
-                  <ArrowRight className="ml-2 h-5 w-5" />
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                  <Play className="mr-3 h-6 w-6" />
+                  Start Playing!
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8">
-                  Learn More
+                <Button variant="outline" size="lg" className="border-4 border-white text-white hover:bg-white hover:text-purple-600 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                  <Target className="mr-3 h-6 w-6" />
+                  How It Works
                 </Button>
               </div>
             </div>
@@ -126,47 +140,47 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 bg-muted/30" data-testid="features-section">
+        <section className="py-20 bg-white" data-testid="features-section">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Why Try-a-Major?
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-800">
+                Why students love us! 💜
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Get hands-on experience with different academic fields before committing to a major.
+              <p className="text-xl text-gray-600 font-medium">
+                No more guessing games! Experience what it&apos;s REALLY like to study different majors.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <BookOpen className="h-6 w-6 text-primary" />
+              <Card className="text-center bg-blue-50 border-4 border-blue-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <CardHeader className="pb-6">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
+                    <Zap className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle>Interactive Lessons</CardTitle>
-                  <CardDescription>
-                    Engage with real-world projects and scenarios from each major.
+                  <CardTitle className="text-2xl font-black text-blue-600 mb-3">Super Interactive!</CardTitle>
+                  <CardDescription className="text-gray-600 text-lg font-medium">
+                    Hands-on projects, quizzes, and real scenarios - no boring lectures here!
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Users className="h-6 w-6 text-primary" />
+              <Card className="text-center bg-green-50 border-4 border-green-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <CardHeader className="pb-6">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-green-400 rounded-full flex items-center justify-center shadow-lg">
+                    <Heart className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle>Expert Guidance</CardTitle>
-                  <CardDescription>
-                    Learn from professionals and educators in each field.
+                  <CardTitle className="text-2xl font-black text-green-600 mb-3">Made with Love</CardTitle>
+                  <CardDescription className="text-gray-600 text-lg font-medium">
+                    Created by real students and professors who actually care about your future!
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <GraduationCap className="h-6 w-6 text-primary" />
+              <Card className="text-center bg-purple-50 border-4 border-purple-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <CardHeader className="pb-6">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-purple-400 rounded-full flex items-center justify-center shadow-lg">
+                    <Target className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle>Informed Decisions</CardTitle>
-                  <CardDescription>
-                    Make confident choices about your academic future.
+                  <CardTitle className="text-2xl font-black text-purple-600 mb-3">Find Your Fit</CardTitle>
+                  <CardDescription className="text-gray-600 text-lg font-medium">
+                    Discover what you&apos;re passionate about before spending years on the wrong path!
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -175,54 +189,57 @@ export default function HomePage() {
         </section>
 
         {/* Featured Courses Section */}
-        <section className="py-16" data-testid="courses-section">
+        <section className="py-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" data-testid="courses-section">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Featured Majors
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
+                Popular Major Adventures! 🚀
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Start your exploration with these popular academic programs.
+              <p className="text-xl text-white/90 font-medium">
+                Jump into these fan-favorite experiences and see what sparks your interest!
               </p>
             </div>
             <Suspense fallback={<CoursesLoading />}>
               <FeaturedCourses />
             </Suspense>
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg">
-                View All Majors
-                <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="text-center mt-16">
+              <Button className="bg-white text-purple-600 hover:bg-gray-100 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <BookOpen className="mr-3 h-6 w-6" />
+                Explore All Majors
               </Button>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-primary text-primary-foreground" data-testid="cta-section">
+        <section className="py-20 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400" data-testid="cta-section">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Find Your Path?
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
+              Ready to discover your passion? 🎯
             </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of students who have discovered their perfect major through our platform.
+            <p className="text-xl mb-12 text-white/90 max-w-3xl mx-auto font-medium">
+              Join over 10,000 students who found their perfect major through our fun, interactive platform!
             </p>
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Get Started Free
+            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+              <Play className="mr-3 h-6 w-6" />
+              Start Your Journey - FREE!
             </Button>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-background/80 backdrop-blur">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <GraduationCap className="h-5 w-5" />
-              <span className="font-semibold">Try-a-Major</span>
+      <footer className="bg-gray-800 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="bg-purple-500 p-3 rounded-xl">
+                <GraduationCap className="h-6 w-6 text-white" />
+              </div>
+              <span className="font-black text-xl">Try-a-Major</span>
             </div>
-            <div className="text-sm text-muted-foreground">
-              © 2024 Try-a-Major. All rights reserved.
+            <div className="text-gray-400 font-medium">
+              © 2024 Try-a-Major. Made with 💜 for students everywhere.
             </div>
           </div>
         </div>
