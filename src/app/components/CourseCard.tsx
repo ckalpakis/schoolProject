@@ -33,11 +33,11 @@ export default function CourseCard({ course, className }: CourseCardProps) {
   }
 
   const colors = [
-    { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-600', button: 'bg-blue-500 hover:bg-blue-600' },
-    { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-600', button: 'bg-purple-500 hover:bg-purple-600' },
-    { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-600', button: 'bg-indigo-500 hover:bg-indigo-600' },
-    { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', button: 'bg-violet-500 hover:bg-violet-600' },
-    { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-700', button: 'bg-blue-600 hover:bg-blue-700' }
+    { bg: 'bg-white/95 backdrop-blur-sm', border: 'border-white/40', text: 'text-blue-600', button: 'bg-blue-500 hover:bg-blue-600' },
+    { bg: 'bg-white/95 backdrop-blur-sm', border: 'border-white/40', text: 'text-purple-600', button: 'bg-purple-500 hover:bg-purple-600' },
+    { bg: 'bg-white/95 backdrop-blur-sm', border: 'border-white/40', text: 'text-indigo-600', button: 'bg-indigo-500 hover:bg-indigo-600' },
+    { bg: 'bg-white/95 backdrop-blur-sm', border: 'border-white/40', text: 'text-violet-600', button: 'bg-violet-500 hover:bg-violet-600' },
+    { bg: 'bg-white/95 backdrop-blur-sm', border: 'border-white/40', text: 'text-blue-700', button: 'bg-blue-600 hover:bg-blue-700' }
   ]
   
   const colorScheme = colors[Math.floor(Math.random() * colors.length)]

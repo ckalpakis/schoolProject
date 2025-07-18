@@ -140,18 +140,18 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-white" data-testid="features-section">
+        <section className="py-20" data-testid="features-section">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-800">
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-white drop-shadow-lg">
                 Why students love us! 💜
               </h2>
-              <p className="text-xl text-gray-600 font-medium">
+              <p className="text-xl text-white/90 font-medium">
                 No more guessing games! Experience what it&apos;s REALLY like to study different majors.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
-              <Card className="text-center bg-blue-50 border-4 border-blue-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Card className="text-center bg-white/95 backdrop-blur-sm border-4 border-white/40 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
                   <div className="mx-auto mb-6 w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
                     <Zap className="h-10 w-10 text-white" />
@@ -162,7 +162,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center bg-purple-50 border-4 border-purple-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Card className="text-center bg-white/95 backdrop-blur-sm border-4 border-white/40 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
                   <div className="mx-auto mb-6 w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
                     <Heart className="h-10 w-10 text-white" />
@@ -173,7 +173,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center bg-indigo-50 border-4 border-indigo-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Card className="text-center bg-white/95 backdrop-blur-sm border-4 border-white/40 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
                   <div className="mx-auto mb-6 w-20 h-20 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg">
                     <Target className="h-10 w-10 text-white" />
@@ -189,7 +189,7 @@ export default function HomePage() {
         </section>
 
         {/* Featured Courses Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500" data-testid="courses-section">
+        <section className="py-20" data-testid="courses-section">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
@@ -212,7 +212,7 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-600" data-testid="cta-section">
+        <section className="py-20" data-testid="cta-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
               Ready to discover your passion? 🎯
