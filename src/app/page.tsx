@@ -1,103 +1,232 @@
-import Image from "next/image";
+import { Suspense } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { supabase } from '@/lib/supabase'
+import CourseCard from './components/CourseCard'
+import { GraduationCap, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react'
 
-export default function Home() {
+// Loading skeleton for courses
+function CoursesLoading() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {[1, 2, 3].map((i) => (
+        <Card key={i} className="animate-pulse">
+          <CardHeader className="pb-3">
+            <div className="h-6 bg-muted rounded w-3/4 mb-2"></div>
+            <div className="flex gap-2 mb-2">
+              <div className="h-5 bg-muted rounded w-16"></div>
+              <div className="h-5 bg-muted rounded w-20"></div>
+            </div>
+            <div className="h-4 bg-muted rounded w-full"></div>
+            <div className="h-4 bg-muted rounded w-2/3"></div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="flex gap-4 mb-4">
+              <div className="h-4 bg-muted rounded w-16"></div>
+              <div className="h-4 bg-muted rounded w-12"></div>
+              <div className="h-4 bg-muted rounded w-14"></div>
+            </div>
+            <div className="h-10 bg-muted rounded w-full"></div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+// Server Component to fetch courses
+async function FeaturedCourses() {
+  const { data: courses, error } = await supabase
+    .from('courses')
+    .select('*')
+    .limit(3)
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching courses:', error)
+    return (
+      <div className="text-center py-8">
+        <p className="text-muted-foreground">Unable to load courses at this time.</p>
+      </div>
+    )
+  }
+
+  if (!courses || courses.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-muted-foreground">No courses available yet. Check back soon!</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-testid="featured-courses">
+      {courses.map((course) => (
+        <CourseCard key={course.id} course={course} />
+      ))}
+    </div>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
+      {/* Header */}
+      <header className="border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+              <GraduationCap className="h-6 w-6" />
+              Try-a-Major
+            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/test" className="text-sm text-muted-foreground hover:text-foreground">
+                Test Suite
+              </Link>
+              <Button variant="outline" size="sm">
+                Sign In
+              </Button>
+            </div>
+          </nav>
         </div>
+      </header>
+
+      <main>
+        {/* Hero Section */}
+        <section className="py-16 lg:py-24" data-testid="hero-section">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-2 mb-6">
+                <Badge variant="secondary" className="text-sm">
+                  <Sparkles className="h-3 w-3 mr-1" />
+                  New Platform
+                </Badge>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                Discover Your Perfect{' '}
+                <span className="text-primary">Academic Path</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Explore different majors through interactive courses and lessons. 
+                Make informed decisions about your educational journey.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="text-lg px-8">
+                  Start Exploring
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="lg" className="text-lg px-8">
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 bg-muted/30" data-testid="features-section">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Why Try-a-Major?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Get hands-on experience with different academic fields before committing to a major.
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Interactive Lessons</CardTitle>
+                  <CardDescription>
+                    Engage with real-world projects and scenarios from each major.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Users className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Expert Guidance</CardTitle>
+                  <CardDescription>
+                    Learn from professionals and educators in each field.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <GraduationCap className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>Informed Decisions</CardTitle>
+                  <CardDescription>
+                    Make confident choices about your academic future.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Courses Section */}
+        <section className="py-16" data-testid="courses-section">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Featured Majors
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Start your exploration with these popular academic programs.
+              </p>
+            </div>
+            <Suspense fallback={<CoursesLoading />}>
+              <FeaturedCourses />
+            </Suspense>
+            <div className="text-center mt-12">
+              <Button variant="outline" size="lg">
+                View All Majors
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-primary text-primary-foreground" data-testid="cta-section">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Find Your Path?
+            </h2>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Join thousands of students who have discovered their perfect major through our platform.
+            </p>
+            <Button size="lg" variant="secondary" className="text-lg px-8">
+              Get Started Free
+            </Button>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="border-t bg-background/80 backdrop-blur">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <GraduationCap className="h-5 w-5" />
+              <span className="font-semibold">Try-a-Major</span>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              © 2024 Try-a-Major. All rights reserved.
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
