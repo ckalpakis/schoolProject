@@ -1,18 +1,36 @@
-import { Suspense } from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { supabase } from '@/lib/supabase'
-import CourseCard from './components/CourseCard'
-import { GraduationCap, BookOpen, Sparkles, Play, Zap, Heart, Target } from 'lucide-react'
+import { Suspense } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/lib/supabase";
+import CourseCard from "./components/CourseCard";
+import AuthButton from "./components/AuthButton";
+import {
+  GraduationCap,
+  BookOpen,
+  Sparkles,
+  Play,
+  Zap,
+  Heart,
+  Target,
+} from "lucide-react";
 
 // Loading skeleton for courses
 function CoursesLoading() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {[1, 2, 3].map((i) => (
-        <Card key={i} className="animate-pulse bg-white border-4 border-gray-200 shadow-lg">
+        <Card
+          key={i}
+          className="animate-pulse bg-white border-4 border-gray-200 shadow-lg"
+        >
           <CardHeader className="pb-4">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-8 bg-gray-200 rounded"></div>
@@ -37,41 +55,48 @@ function CoursesLoading() {
         </Card>
       ))}
     </div>
-  )
+  );
 }
 
 // Server Component to fetch courses
 async function FeaturedCourses() {
   const { data: courses, error } = await supabase
-    .from('courses')
-    .select('*')
+    .from("courses")
+    .select("*")
     .limit(3)
-    .order('created_at', { ascending: false })
+    .order("created_at", { ascending: false });
 
   if (error) {
-    console.error('Error fetching courses:', error)
+    console.error("Error fetching courses:", error);
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">Unable to load courses at this time.</p>
+        <p className="text-muted-foreground">
+          Unable to load courses at this time.
+        </p>
       </div>
-    )
+    );
   }
 
   if (!courses || courses.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">No courses available yet. Check back soon!</p>
+        <p className="text-muted-foreground">
+          No courses available yet. Check back soon!
+        </p>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-testid="featured-courses">
+    <div
+      className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+      data-testid="featured-courses"
+    >
       {courses.map((course) => (
         <CourseCard key={course.id} course={course} />
       ))}
     </div>
-  )
+  );
 }
 
 export default function HomePage() {
@@ -81,19 +106,23 @@ export default function HomePage() {
       <header className="bg-white/95 backdrop-blur-md shadow-sm border-b-4 border-purple-400">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3 font-black text-2xl text-purple-600">
+            <Link
+              href="/"
+              className="flex items-center gap-3 font-black text-2xl text-purple-600"
+            >
               <div className="bg-purple-100 p-2 rounded-xl">
                 <GraduationCap className="h-8 w-8 text-purple-600" />
               </div>
               Try-a-Major
             </Link>
             <div className="flex items-center gap-4">
-              <Link href="/test" className="text-sm text-gray-600 hover:text-purple-600 font-medium">
+              <Link
+                href="/test"
+                className="text-sm text-gray-600 hover:text-purple-600 font-medium"
+              >
                 Test Suite
               </Link>
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-6 py-2 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-                Sign In
-              </Button>
+              <AuthButton />
             </div>
           </nav>
         </div>
@@ -101,13 +130,25 @@ export default function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section className="py-20 lg:py-32 relative overflow-hidden" data-testid="hero-section">
+        <section
+          className="py-20 lg:py-32 relative overflow-hidden"
+          data-testid="hero-section"
+        >
           {/* Floating Elements */}
           <div className="absolute top-20 left-10 w-20 h-20 bg-blue-300 rounded-full opacity-20 animate-bounce"></div>
-          <div className="absolute top-32 right-20 w-16 h-16 bg-purple-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-20 left-20 w-24 h-24 bg-indigo-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-32 right-10 w-12 h-12 bg-blue-400 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1.5s'}}></div>
-          
+          <div
+            className="absolute top-32 right-20 w-16 h-16 bg-purple-300 rounded-full opacity-20 animate-bounce"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+          <div
+            className="absolute bottom-20 left-20 w-24 h-24 bg-indigo-300 rounded-full opacity-20 animate-bounce"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute bottom-32 right-10 w-12 h-12 bg-blue-400 rounded-full opacity-20 animate-bounce"
+            style={{ animationDelay: "1.5s" }}
+          ></div>
+
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               <div className="flex items-center justify-center gap-2 mb-8">
@@ -117,20 +158,29 @@ export default function HomePage() {
                 </Badge>
               </div>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-white drop-shadow-lg">
-                Find Your 
+                Find Your
                 <span className="text-blue-200 block lg:inline lg:ml-4">
                   Dream Major! 🎓
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-                Tired of boring course catalogs? Jump into fun, interactive lessons that show you what studying different majors is REALLY like!
+                Tired of boring course catalogs? Jump into fun, interactive
+                lessons that show you what studying different majors is REALLY
+                like!
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button size="lg" className="bg-blue-400 hover:bg-blue-500 text-white text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <Button
+                  size="lg"
+                  className="border-4 bg-blue-400 hover:bg-blue-500 text-white text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                >
                   <Play className="mr-3 h-6 w-6" />
-                  Start Playing!
+                  Start Learning!
                 </Button>
-                <Button variant="outline" size="lg" className="border-4 border-white text-white hover:bg-white hover:text-blue-600 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-4 bg-purple-400 border-white text-white hover:bg-white hover:text-blue-600 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                >
                   <Target className="mr-3 h-6 w-6" />
                   How It Works
                 </Button>
@@ -144,10 +194,11 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white drop-shadow-lg">
-                Why students love us! 💜
+                Why students love us!
               </h2>
               <p className="text-xl text-white/90 font-medium">
-                No more guessing games! Experience what it&apos;s REALLY like to study different majors.
+                No more guessing games! Experience what it&apos;s REALLY like to
+                study different majors.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
@@ -156,9 +207,12 @@ export default function HomePage() {
                   <div className="mx-auto mb-6 w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
                     <Zap className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-blue-600 mb-3">Super Interactive!</CardTitle>
+                  <CardTitle className="text-2xl font-black text-blue-600 mb-3">
+                    Super Interactive!
+                  </CardTitle>
                   <CardDescription className="text-gray-600 text-lg font-medium">
-                    Hands-on projects, quizzes, and real scenarios - no boring lectures here!
+                    Hands-on projects, quizzes, and real scenarios - no boring
+                    lectures here!
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -167,9 +221,12 @@ export default function HomePage() {
                   <div className="mx-auto mb-6 w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
                     <Heart className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-purple-600 mb-3">Made with Love</CardTitle>
+                  <CardTitle className="text-2xl font-black text-purple-600 mb-3">
+                    We Care About YOU
+                  </CardTitle>
                   <CardDescription className="text-gray-600 text-lg font-medium">
-                    Created by real students and professors who actually care about your future!
+                    Created by real students and professors who actually care
+                    about your future!
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -178,9 +235,12 @@ export default function HomePage() {
                   <div className="mx-auto mb-6 w-20 h-20 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg">
                     <Target className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-indigo-600 mb-3">Find Your Fit</CardTitle>
+                  <CardTitle className="text-2xl font-black text-indigo-600 mb-3">
+                    Find Your Fit
+                  </CardTitle>
                   <CardDescription className="text-gray-600 text-lg font-medium">
-                    Discover what you&apos;re passionate about before spending years on the wrong path!
+                    Discover what you&apos;re passionate about before spending
+                    years on the wrong path!
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -193,10 +253,11 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
-                Popular Major Adventures! 🚀
+                Popular Major Adventures!
               </h2>
               <p className="text-xl text-white/90 font-medium">
-                Jump into these fan-favorite experiences and see what sparks your interest!
+                Jump into these fan-favorite experiences and see what sparks
+                your interest!
               </p>
             </div>
             <Suspense fallback={<CoursesLoading />}>
@@ -215,12 +276,16 @@ export default function HomePage() {
         <section className="py-20" data-testid="cta-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
-              Ready to discover your passion? 🎯
+              Ready to discover your passion?
             </h2>
             <p className="text-xl mb-12 text-white/90 max-w-3xl mx-auto font-medium">
-              Join over 10,000 students who found their perfect major through our fun, interactive platform!
+              Join over 10,000 students who found their perfect major through
+              our fun, interactive platform!
             </p>
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+            <Button
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+            >
               <Play className="mr-3 h-6 w-6" />
               Start Your Journey - FREE!
             </Button>
@@ -239,11 +304,11 @@ export default function HomePage() {
               <span className="font-black text-xl">Try-a-Major</span>
             </div>
             <div className="text-gray-400 font-medium">
-              © 2024 Try-a-Major. Made with 💜 for students everywhere.
+              © 2024 Try-a-Major. Made with love for students everywhere.
             </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
