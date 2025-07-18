@@ -9,9 +9,9 @@ interface TestResult {
   success: boolean
   message: string
   tables?: {
-    courses: { count: number; sample: any }
-    lessons: { count: number; sample: any }
-    progress: { count: number; sample: any }
+    courses: { count: number; sample: unknown }
+    lessons: { count: number; sample: unknown }
+    progress: { count: number; sample: unknown }
   }
   supabase_url?: string
   timestamp?: string
