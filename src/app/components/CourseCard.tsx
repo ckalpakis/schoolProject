@@ -34,10 +34,10 @@ export default function CourseCard({ course, className }: CourseCardProps) {
 
   const colors = [
     { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-600', button: 'bg-blue-500 hover:bg-blue-600' },
-    { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-600', button: 'bg-green-500 hover:bg-green-600' },
     { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-600', button: 'bg-purple-500 hover:bg-purple-600' },
-    { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-600', button: 'bg-orange-500 hover:bg-orange-600' },
-    { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-600', button: 'bg-pink-500 hover:bg-pink-600' }
+    { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-600', button: 'bg-indigo-500 hover:bg-indigo-600' },
+    { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-600', button: 'bg-violet-500 hover:bg-violet-600' },
+    { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-700', button: 'bg-blue-600 hover:bg-blue-700' }
   ]
   
   const colorScheme = colors[Math.floor(Math.random() * colors.length)]
@@ -58,7 +58,7 @@ export default function CourseCard({ course, className }: CourseCardProps) {
               {course.title}
             </CardTitle>
             <div className="flex items-center gap-2 mb-3">
-              <Badge className="bg-yellow-400 text-black text-xs px-3 py-1 rounded-full font-bold border-0">
+              <Badge className="bg-blue-400 text-white text-xs px-3 py-1 rounded-full font-bold border-0">
                 {mockStats.category}
               </Badge>
               <Badge className="bg-white text-gray-700 text-xs px-3 py-1 rounded-full font-bold border-2 border-gray-300">

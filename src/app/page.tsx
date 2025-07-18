@@ -76,7 +76,7 @@ async function FeaturedCourses() {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-blue-600">
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-md shadow-sm border-b-4 border-purple-400">
         <div className="container mx-auto px-4 py-4">
@@ -103,22 +103,22 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="py-20 lg:py-32 relative overflow-hidden" data-testid="hero-section">
           {/* Floating Elements */}
-          <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-bounce"></div>
-          <div className="absolute top-32 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-20 left-20 w-24 h-24 bg-green-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-32 right-10 w-12 h-12 bg-pink-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-300 rounded-full opacity-20 animate-bounce"></div>
+          <div className="absolute top-32 right-20 w-16 h-16 bg-purple-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute bottom-20 left-20 w-24 h-24 bg-indigo-300 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 right-10 w-12 h-12 bg-blue-400 rounded-full opacity-20 animate-bounce" style={{animationDelay: '1.5s'}}></div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               <div className="flex items-center justify-center gap-2 mb-8">
-                <Badge className="bg-yellow-400 text-black text-sm px-4 py-2 rounded-full font-bold border-0 shadow-lg">
+                <Badge className="bg-blue-400 text-white text-sm px-4 py-2 rounded-full font-bold border-0 shadow-lg">
                   <Sparkles className="h-4 w-4 mr-2" />
                   NEW & EXCITING!
                 </Badge>
               </div>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 text-white drop-shadow-lg">
                 Find Your 
-                <span className="text-yellow-300 block lg:inline lg:ml-4">
+                <span className="text-blue-200 block lg:inline lg:ml-4">
                   Dream Major! 🎓
                 </span>
               </h1>
@@ -126,11 +126,11 @@ export default function HomePage() {
                 Tired of boring course catalogs? Jump into fun, interactive lessons that show you what studying different majors is REALLY like!
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <Button size="lg" className="bg-blue-400 hover:bg-blue-500 text-white text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                   <Play className="mr-3 h-6 w-6" />
                   Start Playing!
                 </Button>
-                <Button variant="outline" size="lg" className="border-4 border-white text-white hover:bg-white hover:text-purple-600 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <Button variant="outline" size="lg" className="border-4 border-white text-white hover:bg-white hover:text-blue-600 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                   <Target className="mr-3 h-6 w-6" />
                   How It Works
                 </Button>
@@ -153,7 +153,7 @@ export default function HomePage() {
             <div className="grid gap-8 md:grid-cols-3">
               <Card className="text-center bg-blue-50 border-4 border-blue-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
-                  <div className="mx-auto mb-6 w-20 h-20 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
                     <Zap className="h-10 w-10 text-white" />
                   </div>
                   <CardTitle className="text-2xl font-black text-blue-600 mb-3">Super Interactive!</CardTitle>
@@ -162,23 +162,23 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center bg-green-50 border-4 border-green-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Card className="text-center bg-purple-50 border-4 border-purple-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
-                  <div className="mx-auto mb-6 w-20 h-20 bg-green-400 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
                     <Heart className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-green-600 mb-3">Made with Love</CardTitle>
+                  <CardTitle className="text-2xl font-black text-purple-600 mb-3">Made with Love</CardTitle>
                   <CardDescription className="text-gray-600 text-lg font-medium">
                     Created by real students and professors who actually care about your future!
                   </CardDescription>
                 </CardHeader>
               </Card>
-              <Card className="text-center bg-purple-50 border-4 border-purple-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Card className="text-center bg-indigo-50 border-4 border-indigo-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <CardHeader className="pb-6">
-                  <div className="mx-auto mb-6 w-20 h-20 bg-purple-400 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="mx-auto mb-6 w-20 h-20 bg-indigo-500 rounded-full flex items-center justify-center shadow-lg">
                     <Target className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-black text-purple-600 mb-3">Find Your Fit</CardTitle>
+                  <CardTitle className="text-2xl font-black text-indigo-600 mb-3">Find Your Fit</CardTitle>
                   <CardDescription className="text-gray-600 text-lg font-medium">
                     Discover what you&apos;re passionate about before spending years on the wrong path!
                   </CardDescription>
@@ -189,7 +189,7 @@ export default function HomePage() {
         </section>
 
         {/* Featured Courses Section */}
-        <section className="py-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" data-testid="courses-section">
+        <section className="py-20 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500" data-testid="courses-section">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
@@ -203,7 +203,7 @@ export default function HomePage() {
               <FeaturedCourses />
             </Suspense>
             <div className="text-center mt-16">
-              <Button className="bg-white text-purple-600 hover:bg-gray-100 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-10 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                 <BookOpen className="mr-3 h-6 w-6" />
                 Explore All Majors
               </Button>
@@ -212,7 +212,7 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400" data-testid="cta-section">
+        <section className="py-20 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-600" data-testid="cta-section">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
               Ready to discover your passion? 🎯
@@ -220,7 +220,7 @@ export default function HomePage() {
             <p className="text-xl mb-12 text-white/90 max-w-3xl mx-auto font-medium">
               Join over 10,000 students who found their perfect major through our fun, interactive platform!
             </p>
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-full font-black shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
               <Play className="mr-3 h-6 w-6" />
               Start Your Journey - FREE!
             </Button>
