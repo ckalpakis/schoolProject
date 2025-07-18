@@ -42,8 +42,8 @@ export default function AuthPage() {
         if (error) throw error;
         window.location.href = '/';
       }
-    } catch (error: any) {
-      setMessage(error.message);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
