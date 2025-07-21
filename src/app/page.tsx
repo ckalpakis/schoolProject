@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import CourseCard from "./components/CourseCard";
 import AuthButton from "./components/AuthButton";
+import MajorQuiz from "./components/MajorQuiz";
 import {
   GraduationCap,
   BookOpen,
@@ -188,6 +189,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Major Quiz Section */}
+        <MajorQuiz />
 
         {/* Features Section */}
         <section className="py-20" data-testid="features-section">
