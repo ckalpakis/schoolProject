@@ -308,7 +308,7 @@ export default function HomePage() {
               <span className="font-black text-xl">Try-a-Major</span>
             </div>
             <div className="text-gray-400 font-medium">
-              © 2024 Try-a-Major. Made with love for students everywhere.
+              © 2025 Try-a-Major. Made with love for students everywhere.
             </div>
           </div>
         </div>
