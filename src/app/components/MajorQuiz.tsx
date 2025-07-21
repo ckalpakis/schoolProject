@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronRight, Sparkles, Brain, Lightbulb, Trophy, ArrowRight } from 'lucide-react';
+import { ChevronRight, Brain, Trophy, ArrowRight } from 'lucide-react';
 
 const quizQuestions = [
   {
@@ -145,7 +145,7 @@ export default function MajorQuiz() {
 
             <div className="grid gap-6 md:grid-cols-3 mb-12">
               {topMajors.map((major, index) => {
-                const majorInfo = majorRecommendations[major];
+                const majorInfo = majorRecommendations[major as keyof typeof majorRecommendations];
                 return (
                   <Card key={major} className={`text-center bg-white/95 backdrop-blur-sm border-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
                     index === 0 ? 'border-yellow-400 ring-4 ring-yellow-200' : 'border-white/40'
@@ -182,7 +182,7 @@ export default function MajorQuiz() {
                 <Link href="/auth">
                   <Button className="bg-purple-600 hover:bg-purple-700 text-white text-lg px-8 py-3 rounded-full font-black shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                     <ArrowRight className="mr-2 h-5 w-5" />
-                    Sign Up - It's Free!
+                    Sign Up - It&apos;s Free!
                   </Button>
                 </Link>
                 <Button
@@ -211,7 +211,7 @@ export default function MajorQuiz() {
             DISCOVER YOUR MAJOR!
           </Badge>
           <h2 className="text-4xl md:text-5xl font-black mb-6 text-white drop-shadow-lg">
-            What's Your Perfect Major? 🤔
+            What&apos;s Your Perfect Major? 🤔
           </h2>
           <p className="text-xl text-white/90 font-medium mb-8">
             Take our fun 2-minute quiz to discover majors that match your personality and interests!
